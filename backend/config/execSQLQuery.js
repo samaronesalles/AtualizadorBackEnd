@@ -27,19 +27,20 @@ class execSQLQuery {
             }
         });
 
-        this._connection.query(sqlQry, function (error, results, fields) {
+        this._connection.query(sqlQry, function (error, results) {
 
-            console.log(sqlQry);
+            console.log(results.data);
 
             if (error)
-                res.json(error);
+                res.json(error.data);
             else
-                res.json(results);
+                res.json(results.data);
 
             this._connection.end();
         });
 
     }
+
 }
 
 module.exports = execSQLQuery;

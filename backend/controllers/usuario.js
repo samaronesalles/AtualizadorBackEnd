@@ -10,7 +10,7 @@ module.exports = {
         const modelUsuario = new usuarioDAO;
         modelUsuario.SaveUser(dadosUser, req, res);
 
-        return res.json(res);
+        return res.json(res.data);
     },
 
 };
