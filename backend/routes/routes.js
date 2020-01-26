@@ -1,16 +1,13 @@
 const express = require("express");
 const routes = express.Router();
 
-const userController = require('../controllers/usuario');
+const userController = require('../controllers/users');
 
-routes.get('/users', (req, res) => {
-    res.send('entrou na rota /users');
-});
+routes.get('/users', userController.getUsers);          // Testado: OK
+routes.get('/users/:id', userController.getUser);       // Testado: OK
 
-routes.get('/user_byId', (req, res) => {
-    res.send('entrou na rota /user_byId');
-});
-
-routes.post('/user', userController.NewUser);
+routes.post('/users', userController.postUser);          // Testado: OK
+routes.delete('/users/:id', userController.deleteUser); // Testado: OK
+routes.put('/users/:id', userController.putUser);       // Testado: OK
 
 module.exports = routes;
