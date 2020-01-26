@@ -1,14 +1,16 @@
-const usuarioModel = require('../models/usuarioDAO');
+const usuarioDAO = require('../models/usuarioDAO');
 
 module.exports = {
 
     NewUser(req, res) {
+        console.log('chegou em "controller>NewUser"');
+
         const dadosUser = req.body;
-        console.log(dadosUser);
 
-        usuarioModel.prototype.SaveUser(dadosUser);
+        const modelUsuario = new usuarioDAO;
+        modelUsuario.SaveUser(dadosUser, req, res);
 
-        return res.json({ resultado: "Sucesso" });
+        return res.json(res);
     },
 
 };

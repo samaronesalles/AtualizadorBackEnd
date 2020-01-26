@@ -7,8 +7,8 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use("/api", require("./routes/routes"));
-app.use(express.json());
 app.use(cors());
 
 app.listen(PORTA, () => {
