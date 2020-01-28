@@ -1,5 +1,7 @@
+const SettingsDB = require('../config/settingsDB');
+
 const Sequelize = require('sequelize');
-const connection = new Sequelize('mysql://root:h12l99@localhost:3306/atualizadorlbc');
+const connection = new Sequelize(SettingsDB.StringConnectionDB());
 
 class userDAO {
 
