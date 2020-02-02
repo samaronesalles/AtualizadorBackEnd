@@ -54,11 +54,7 @@ module.exports = {
             return res.status(400).json({ error: 'User not found TO UPDATE' });
         }
 
-        await user.update({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
-        }, {
+        await user.update(req.body, {
             where: {
                 id: user_id
             },
