@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Department = require('../models/Department');
 
 module.exports = {
 
@@ -13,7 +14,9 @@ module.exports = {
         console.log('chegou em "controller>UsersController.getUser"');
 
         const { user_id } = req.params;
-        const user = await User.findByPk(user_id);
+        const user = await User.findByPk(user_id, {
+            //            include: { association: 'user' }
+        });
 
         return res.json(user);
     },

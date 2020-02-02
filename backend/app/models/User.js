@@ -9,6 +9,7 @@ const { Model, DataTypes } = require('sequelize');
 // Estudar melhor no link "https://github.com/defunctzombie/sequelize-encrypted" para cryptografar a senha...
 
 class User extends Model {
+
     static init(sequelize) {
         super.init({
             name: DataTypes.STRING,
@@ -18,6 +19,11 @@ class User extends Model {
             sequelize
         })
     }
+
+    // static associate(models) {
+    //     this.hasOne(models.Department, { foreignKey: 'users_department_id', as: 'user_has_department' });
+    // }
+
 }
 
 module.exports = User;
