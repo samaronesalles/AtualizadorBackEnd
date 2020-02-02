@@ -1,4 +1,4 @@
-const SettingsDB = require('../config/settingsDB');
+const SettingsDB = require('../../config/settingsDB');
 
 const Sequelize = require('sequelize');
 const connection = new Sequelize(SettingsDB.StringConnectionDB());
