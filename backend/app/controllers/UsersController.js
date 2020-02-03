@@ -15,7 +15,7 @@ module.exports = {
 
         const { user_id } = req.params;
         const user = await User.findByPk(user_id, {
-            //            include: { association: 'user' }
+            include: [{ model: Department, as: 'departments' }]
         });
 
         return res.json(user);

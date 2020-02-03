@@ -20,9 +20,10 @@ class User extends Model {
         })
     }
 
-    // static associate(models) {
-    //     this.hasOne(models.Department, { foreignKey: 'users_department_id', as: 'user_has_department' });
-    // }
+    static associate(Department) {
+        this.hasOne(Department, { foreignKey: 'id', as: 'departments' });
+    }
+
 
 }
 
