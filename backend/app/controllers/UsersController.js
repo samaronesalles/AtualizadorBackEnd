@@ -38,6 +38,21 @@ module.exports = {
             return res.status(400).json({ error: 'user email already registered.' });
         }
 
+        const { department } = req.body;
+        if (department) {
+            if (department.name != '') {
+                const [dep] = await Department.findOrCreate({
+                    where: {
+                        name: department.name,
+                    }
+                })
+
+                if (dep.dataValues.id > 0) {
+                    req.body['department_id'] = dep.dataValues.id;
+                }
+            }
+        }
+
         const user = await User.create(req.body);
         return res.json(user);
     },

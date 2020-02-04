@@ -25,11 +25,10 @@ module.exports = {
     async postDepartment(req, res) {      // Testado: OK
         console.log('chegou em "controller>DepartmentsController.postDepartment"');
 
-        console.log('***********');
-        console.log(req.body);
-        console.log('***********');
+        const [department, created] = await Department.findOrCreate({
+            where: { name: req.body.name },
+        });
 
-        const department = await Department.create(req.body);
         return res.json(department);
     },
 
