@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Department = require('../models/Department');
+const Crypt = require('../Utils/encryption.js');
 
 module.exports = {
 
@@ -24,6 +25,11 @@ module.exports = {
                 model: Department
             }
         });
+
+        // let pass = user.password;
+        // pass = Crypt.decrypt(pass);
+
+        // user['password'] = pass;
 
         return res.json(user);
     },
@@ -52,6 +58,11 @@ module.exports = {
                 }
             }
         }
+
+        let pass = req.body.password;
+        pass = Crypt.encrypt(pass);
+
+        req.body['password'] = pass;
 
         const user = await User.create(req.body);
         return res.json(user);
