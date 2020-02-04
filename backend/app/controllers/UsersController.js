@@ -86,6 +86,21 @@ module.exports = {
             return res.status(400).json({ error: 'User not found TO UPDATE' });
         }
 
+        const { department } = req.body;
+        if (department) {
+            if (department.name != '') {
+                const [dep] = await Department.findOrCreate({
+                    where: {
+                        name: department.name,
+                    }
+                })
+
+                if (dep.dataValues.id > 0) {
+                    req.body['department_id'] = dep.dataValues.id;
+                }
+            }
+        }
+
         await user.update(req.body, {
             where: {
                 id: user_id
