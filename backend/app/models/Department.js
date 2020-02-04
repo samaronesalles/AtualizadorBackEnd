@@ -11,7 +11,7 @@ class Department extends Model {
     }
 
     static associate(models) {
-        this.belongsTo(models.User, { foreignKey: 'id', as: 'users' });
+        this.hasMany(models.User);
     }
 
 }

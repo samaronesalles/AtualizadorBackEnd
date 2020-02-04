@@ -6,7 +6,12 @@ module.exports = {
     async getUsers(req, res) {      // Testado: OK
         console.log('chegou em "controller>UsersController.getUsers"');
 
-        const users = await User.findAll();
+        const users = await User.findAll({
+            include: {
+                model: Department
+            }
+        });
+
         return res.json(users);
     },
 
@@ -15,7 +20,9 @@ module.exports = {
 
         const { user_id } = req.params;
         const user = await User.findByPk(user_id, {
-            include: [{ model: Department, as: 'departments' }]
+            include: {
+                model: Department
+            }
         });
 
         return res.json(user);
