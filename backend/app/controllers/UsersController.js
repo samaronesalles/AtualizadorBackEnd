@@ -31,6 +31,13 @@ module.exports = {
     async postUser(req, res) {      // Testado: OK
         console.log('chegou em "controller>UsersController.postUser"');
 
+        const { email } = req.body;
+        const user_temp = await User.findOne({ where: { email: email } });
+
+        if (user_temp) {
+            return res.status(400).json({ error: 'user email already registered.' });
+        }
+
         const user = await User.create(req.body);
         return res.json(user);
     },
