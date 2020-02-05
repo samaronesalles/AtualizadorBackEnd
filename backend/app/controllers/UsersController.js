@@ -165,6 +165,12 @@ module.exports = {
                 }
             }
 
+            let pass = password;
+            if (pass) {
+                pass = Crypt.encrypt(pass);
+                req.body['password'] = pass;
+            }
+
             await user.update(req.body, {
                 where: {
                     id: user_id
