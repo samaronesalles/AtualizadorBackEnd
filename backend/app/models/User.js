@@ -1,13 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
 
-//const { Sequelize, Model, DataTypes } = require('sequelize');
-//var EncryptedField = require('sequelize-encrypted');
-
-//var key = 'TW9yZW5hIGRvIHNvZsOhIGRvIFBlZHJvLi4ga2tra2traw=='; 
-//var enc_fields = EncryptedField(Sequelize, key);
-
-// Estudar melhor no link "https://github.com/defunctzombie/sequelize-encrypted" para cryptografar a senha...
-
 class User extends Model {
 
     static init(sequelize) {
@@ -20,10 +12,9 @@ class User extends Model {
         })
     }
 
-    static associate(Department) {
-        this.hasOne(Department, { foreignKey: 'id', as: 'departments' });
+    static associate(models) {
+        this.belongsTo(models.Department, { foreignKey: 'department_id' });
     }
-
 
 }
 
