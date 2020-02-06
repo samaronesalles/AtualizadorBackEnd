@@ -306,6 +306,30 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "costumer",
+			"item": [
+				{
+					"name": "/get cnpj",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/costumer/0456456455",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"costumer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"protocolProfileBehavior": {}

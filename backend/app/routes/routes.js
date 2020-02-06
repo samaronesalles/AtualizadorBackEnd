@@ -3,6 +3,7 @@ const routes = express.Router();
 
 const userController = require('../controllers/UsersController');
 const departmentController = require('../controllers/DepartmentsController');
+const costumerController = require('../controllers/CostumerController');
 
 // Users
 routes.get('/users', userController.getUsers);                                              // Testado: OK
@@ -17,5 +18,9 @@ routes.post('/departments', departmentController.postDepartment);               
 routes.get('/departments/:department_name', departmentController.getDepartment);            // Testado: OK
 routes.delete('/departments/:department_id', departmentController.deleteDepartment);        // Testado: OK
 routes.put('/departments/:department_id', departmentController.putDepartment);              // Testado: OK
+
+
+//Client
+routes.get('/costumer/:cnpj', costumerController.getVersionCompare);
 
 module.exports = routes;
