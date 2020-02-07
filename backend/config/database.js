@@ -1,6 +1,6 @@
 module.exports = {
   username: 'root',
-  password: 'h12l99',
+  password: '',
   database: 'atualizadorlbc',
   host: '127.0.0.1',
   dialect: 'mysql',

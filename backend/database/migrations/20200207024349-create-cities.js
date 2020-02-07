@@ -30,9 +30,6 @@ module.exports = {
         allowNull: false,
         type: DataTypes.DATE,
       },
-    }).success(function () {
-      migration.migrator.sequelize.query("insert into cities (name, ibge_code, state) values ('Donald Duck', 60)");
-      done();
     });
   },
 
