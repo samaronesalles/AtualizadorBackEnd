@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable('adresses', {
+    return queryInterface.createTable('addresses', {
 
       id: {
         allowNull: false,
@@ -10,18 +10,24 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      name: {
+      address: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      ibge_code: {
+      number: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      zip_code: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      city_id: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        unique: true,
-      },
-      state: {
-        allowNull: false,
-        type: DataTypes.STRING,
+        references: { model: 'cities', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
       },
       created_at: {
         allowNull: false,
@@ -35,6 +41,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('adresses');
+    return queryInterface.dropTable('addresses');
   }
 };
