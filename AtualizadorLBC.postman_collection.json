@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "70d96556-ac54-45da-adec-cf4344258be4",
+		"_postman_id": "fb898a37-a8a9-4430-be61-99111ab772be",
 		"name": "AtualizadorLBC",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -308,7 +308,7 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "costumer",
+			"name": "Customer",
 			"item": [
 				{
 					"name": "/get cnpj",
@@ -316,20 +316,22 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/costumer/0456456455",
+							"raw": "localhost:3000/api/costumer/83141717000180",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"api",
-								"costumer"
+								"costumer",
+								"83141717000180"
 							]
 						}
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

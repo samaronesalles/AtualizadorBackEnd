@@ -1,16 +1,15 @@
 module.exports = {
 
     async getVersionCompare(req, res) {
-        console.log('chegou em "controller>ClientController.getVersionCompare"');
+        console.log('chegou em "controller>CustomerController.getVersionCompare"');
 
         const { cnpj } = req.params
-
         console.log('CNPJ ' + cnpj);
-        //Verificar na clasula where se a empresa esta ativa para atualização posteriormente
 
-        //retornar versoes vazias para cada modulo se não possui retorno do banco
+        // 1- Verificar na clasula where se a empresa esta ativa para atualização posteriormente
+        // 2- retornar versoes vazias para cada modulo se não possui retorno do banco
 
-        // passando formato de retorno fixo para teste
+        // 3- passando formato de retorno fixo para teste
         return res.json({
             lbcpdv: {
                 version: '35.70',

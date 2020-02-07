@@ -3,7 +3,7 @@ const routes = express.Router();
 
 const userController = require('../controllers/UsersController');
 const departmentController = require('../controllers/DepartmentsController');
-const costumerController = require('../controllers/CostumerController');
+const customerController = require('../controllers/CustomerController');
 
 // Users
 routes.get('/users', userController.getUsers);                                              // Testado: OK
@@ -21,6 +21,6 @@ routes.put('/departments/:department_id', departmentController.putDepartment);  
 
 
 //Client
-routes.get('/costumer/:cnpj', costumerController.getVersionCompare);
+routes.get('/customer/:cnpj', customerController.getVersionCompare);
 
 module.exports = routes;
