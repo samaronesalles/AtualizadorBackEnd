@@ -20,5 +20,6 @@ module.exports = connection;
 // 2º edito a nova migrate que foi criada 
 // 3º Comando: yarn sequelize db:migration 
 //       - Isto fará com que uma instrução create table seja executada no sgbd.
-//
+// 4º Comando: yarn sequelize db:seed:all
+//       - Isto executará as seeds (inserts iniciais) nas tabelas que as possuem
 // Para ver todos os comando disponíveis: yarn sequelize -help
