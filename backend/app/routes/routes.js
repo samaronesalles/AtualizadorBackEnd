@@ -22,9 +22,9 @@ routes.put('/departments/:department_id', departmentController.putDepartment);  
 
 // Customers
 routes.get('/customers', customerController.getCustomers);                                  // Testado: OK
-routes.get('/customers/:cnpj', customerController.getVersionCompare);                       // Testado: OK
+routes.get('/customers/:cnpj', customerController.getCustomer);                             // Testado: OK
+routes.get('/customers/:cnpj/modules', customerController.getVersionCompare);               // Testado: OK
 routes.post('/customers', customerController.postCustomer);                                 // Testado: OK
-
 
 // Types update
 routes.get('/typesupdate', TypesUpdateController.getTypesUpdate);                           // Testado: OK

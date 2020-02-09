@@ -35,6 +35,49 @@ module.exports = {
         return res.json(customers);
     },
 
+    async getCustomer(req, res) {                // Testado: OK
+        console.log('chegou em "controller>CustomerController.getCustomer"');
+
+        try {
+            let { cnpj } = req.params;
+
+            if (!cnpj)
+                throw new Error("cnpj param is required.");
+
+            const customers = await Customer.findOne(
+                {
+                    where: {
+                        cnpj: cnpj
+                    },
+                    attributes: attributes_Customer,
+                    include: [
+                        {
+                            model: TypesUpdate,
+                            attributes: ['id', 'description']
+                        },
+                        {
+                            model: Address,
+                            attributes: attributes_Address,
+                            through: {
+                                attributes: []
+                            },
+                            include: {
+                                model: City,
+                                attributes: attributes_City
+                            },
+                        },
+                    ]
+                },
+            );
+
+            return res.json(customers);
+
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+
+    },
+
     async postCustomer(req, res) {               // Testado: OK
         console.log('chegou em "controller>CustomerController.postCustomer"');
 
