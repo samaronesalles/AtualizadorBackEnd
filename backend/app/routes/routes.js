@@ -20,7 +20,8 @@ routes.delete('/departments/:department_id', departmentController.deleteDepartme
 routes.put('/departments/:department_id', departmentController.putDepartment);              // Testado: OK
 
 
-//Client
-routes.get('/customer/:cnpj', customerController.getVersionCompare);
+//Customers
+routes.post('/customer', customerController.postCustomer);                                  // Testado: OK
+routes.get('/customer/:cnpj', customerController.getVersionCompare);                        // Testado: OK
 
 module.exports = routes;

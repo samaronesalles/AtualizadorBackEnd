@@ -329,6 +329,41 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "/post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company_name\" : \"Postos Rede Setee LTDA\",\n\t\"cnpj\" : \"94.910.498/0001-73\",\n\t\"fancy_name\" : \"Rede Setee\",\n\t\"nick_name\" : \"Setee\",\n\t\"phone\" : \"(11) 9999-1111\",\n\t\"in_update\" : \"false\",\n\t\"address\" : {\n\t\t\"address\" : \"Rua Sete de Setembro\",\n\t\t\"number\" : \"38\",\n\t\t\"zip_code\" : \"25068-448\",\n\t\t\"city\" : \"São Paulo\",\n\t\t\"state\" : \"SP\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/customer",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customer"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

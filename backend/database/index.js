@@ -3,14 +3,22 @@ const dbConfig = require('../config/database');
 
 const User = require('../app/models/User');
 const Department = require('../app/models/Department');
+const Customer = require('../app/models/Customer');
+const Address = require('../app/models/Address');
+const City = require('../app/models/City');
 
 
 const connection = new Sequelize(dbConfig);
 
 User.init(connection);
 Department.init(connection);
+Customer.init(connection);
+Address.init(connection);
+City.init(connection);
 
 User.associate(connection.models);
+Address.associate(connection.models);
+Customer.associate(connection.models);
 
 module.exports = connection;
 
