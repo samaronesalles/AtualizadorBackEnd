@@ -6,6 +6,7 @@ const Department = require('../app/models/Department');
 const Customer = require('../app/models/Customer');
 const Address = require('../app/models/Address');
 const City = require('../app/models/City');
+const TypesUpdate = require('../app/models/TypesUpdate');
 
 
 const connection = new Sequelize(dbConfig);
@@ -15,6 +16,7 @@ Department.init(connection);
 Customer.init(connection);
 Address.init(connection);
 City.init(connection);
+TypesUpdate.init(connection);
 
 User.associate(connection.models);
 Address.associate(connection.models);

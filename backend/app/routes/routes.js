@@ -4,6 +4,7 @@ const routes = express.Router();
 const userController = require('../controllers/UsersController');
 const departmentController = require('../controllers/DepartmentsController');
 const customerController = require('../controllers/CustomerController');
+const TypesUpdateController = require('../controllers/TypesUpdateController');
 
 // Users
 routes.get('/users', userController.getUsers);                                              // Testado: OK
@@ -19,9 +20,17 @@ routes.get('/departments/:department_name', departmentController.getDepartment);
 routes.delete('/departments/:department_id', departmentController.deleteDepartment);        // Testado: OK
 routes.put('/departments/:department_id', departmentController.putDepartment);              // Testado: OK
 
+// Customers
+routes.get('/customers', customerController.getCustomers);                                  // Testado: OK
+routes.get('/customers/:cnpj', customerController.getVersionCompare);                       // Testado: OK
+routes.post('/customers', customerController.postCustomer);                                 // Testado: OK
 
-//Customers
-routes.post('/customer', customerController.postCustomer);                                  // Testado: OK
-routes.get('/customer/:cnpj', customerController.getVersionCompare);                        // Testado: OK
+
+// Types update
+routes.get('/typesupdate', TypesUpdateController.getTypesUpdate);                           // Testado: OK
+routes.get('/typesupdate/:type_id', TypesUpdateController.getTypeUpdate);                   // Testado: OK
+routes.post('/typesupdate', TypesUpdateController.postTypesUpdate);                         // Testado: OK
+routes.delete('/typesupdate/:type_id', TypesUpdateController.deleteTypesUpdate);            // Testado: OK
+routes.put('/typesupdate/:type_id', TypesUpdateController.putTypesUpdate);                  // Testado: OK
 
 module.exports = routes;

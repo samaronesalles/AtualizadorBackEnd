@@ -17,6 +17,7 @@ class Customer extends Model {
 
     static associate(models) {
         this.belongsToMany(models.Address, { foreignKey: 'customer_id', through: 'customer_address' });
+        this.belongsTo(models.TypesUpdate, { foreignKey: 'type_update_id' });
     }
 
 }
