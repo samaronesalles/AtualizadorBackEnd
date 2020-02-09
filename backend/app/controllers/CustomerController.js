@@ -2,39 +2,35 @@ const Customer = require('../models/Customer');
 const Address = require('../models/Address');
 const City = require('../models/City');
 const TypesUpdate = require('../models/TypesUpdate');
-const attributes_Customer = ['id', 'company_name', 'cnpj', 'fancy_name', 'nick_name', 'phone', 'in_update', 'type_update_id'];
+const attributes_Customer = ['id', 'company_name', 'cnpj', 'fancy_name', 'nick_name', 'phone', 'in_update'];
 const attributes_Address = ['address', 'number', 'zip_code'];
 const attributes_City = ['name', 'state', 'ibge_code'];
 
 module.exports = {
 
-    async getCustomers(req, res) {               // Testado: falta retornar o tipo de atualização.. fazer funcionar um dos dois códigos comentados.
+    async getCustomers(req, res) {               // Testado: OK
         console.log('chegou em "controller>CustomerController.getCustomers"');
 
         const customers = await Customer.findAll({
             attributes: attributes_Customer,
-            // include: {
-            //     model: TypesUpdate,
-            //     attributes: ['description']
-            // },
-            include: {
-                model: Address,
-                attributes: attributes_Address,
-                through: {
-                    attributes: []
+            include: [
+                {
+                    model: TypesUpdate,
+                    attributes: ['id', 'description']
                 },
-                include: {
-                    model: City,
-                    attributes: attributes_City
+                {
+                    model: Address,
+                    attributes: attributes_Address,
+                    through: {
+                        attributes: []
+                    },
+                    include: {
+                        model: City,
+                        attributes: attributes_City
+                    },
                 },
-            }
+            ]
         });
-
-        // if (customers[1].type_update_id) {
-        //     const type = TypesUpdate.findByPk(customers[1].type_update_id);
-        //     if (type)
-        //         customers[1]["type_update"] = { id: type.id, description: type.description }
-        // }
 
         return res.json(customers);
     },
