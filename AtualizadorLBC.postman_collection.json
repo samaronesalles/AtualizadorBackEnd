@@ -66,7 +66,7 @@
 					"response": []
 				},
 				{
-					"name": "/get byId",
+					"name": "/get byID",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -282,7 +282,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Desenvolvimento\"\n}",
+							"raw": "{\n\t\"name\": \"Suporte\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -290,7 +290,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/api/departments/2",
+							"raw": "localhost:3000/api/departments/1",
 							"host": [
 								"localhost"
 							],
@@ -298,7 +298,7 @@
 							"path": [
 								"api",
 								"departments",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -311,20 +311,60 @@
 			"name": "Customer",
 			"item": [
 				{
-					"name": "/get cnpj",
+					"name": "/get",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/costumer/83141717000180",
+							"raw": "localhost:3000/api/customers",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"api",
-								"costumer",
-								"83141717000180"
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/get byCNPJ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/customers/93451119000161",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customers",
+								"93451119000161"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/get modules byCNPJ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/customers/831417170/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customers",
+								"831417170",
+								"modules"
 							]
 						}
 					},
@@ -352,14 +392,150 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/api/customer",
+							"raw": "localhost:3000/api/customers",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"api",
-								"customer"
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TypesUpdate",
+			"item": [
+				{
+					"name": "/get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/typesupdate",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"typesupdate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/get byID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/typesupdate/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"typesupdate",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\" : \"muitooo cuidado\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/typesupdate",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"typesupdate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/delete byID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/typesupdate/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"typesupdate",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/put byID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\" : \"Crítico\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/typesupdate/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"typesupdate",
+								"1"
 							]
 						}
 					},
