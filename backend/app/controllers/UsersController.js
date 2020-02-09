@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const Department = require('../models/Department');
 const Crypt = require('../Utils/encryption.js');
+const attributes_Users = ['id', 'name', 'email', 'password', 'createdAt', 'updatedAt'];
+const attributes_Departments = ['id', 'name'];
 
 module.exports = {
 
@@ -10,8 +12,10 @@ module.exports = {
         try {
 
             const users = await User.findAll({
+                attributes: attributes_Users,
                 include: {
-                    model: Department
+                    model: Department,
+                    attributes: attributes_Departments
                 }
             });
 
@@ -34,8 +38,10 @@ module.exports = {
                 throw new Error("user index is required.");
 
             const user = await User.findByPk(user_id, {
+                attributes: attributes_Users,
                 include: {
-                    model: Department
+                    model: Department,
+                    attributes: attributes_Departments
                 }
             });
 
@@ -96,7 +102,15 @@ module.exports = {
 
             req.body['password'] = pass;
 
-            const user = await User.create(req.body);
+            let user = await User.create(req.body);
+            user = await User.findByPk(user.id, {
+                attributes: attributes_Users,
+                include: {
+                    model: Department,
+                    attributes: attributes_Departments
+                }
+            });
+
             return res.json(user);
 
         } catch (error) {
@@ -135,7 +149,7 @@ module.exports = {
         try {
 
             const { user_id } = req.params;
-            const user = await User.findByPk(user_id);
+            let user = await User.findByPk(user_id);
 
             if (!user)
                 throw new Error("User not found TO UPDATE");
@@ -177,6 +191,14 @@ module.exports = {
                 },
                 returning: true,
                 plain: true
+            });
+
+            user = await User.findByPk(user_id, {
+                attributes: attributes_Users,
+                include: {
+                    model: Department,
+                    attributes: attributes_Departments
+                }
             });
 
             return res.json(user);

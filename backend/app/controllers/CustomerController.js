@@ -1,6 +1,9 @@
 const Customer = require('../models/Customer');
 const Address = require('../models/Address');
 const City = require('../models/City');
+const attributes_Customer = ['id', 'company_name', 'cnpj', 'fancy_name', 'nick_name', 'phone', 'in_update'];
+const attributes_Address = ['address', 'number', 'zip_code'];
+const attributes_City = ['name', 'state', 'ibge_code'];
 
 module.exports = {
 
@@ -88,16 +91,16 @@ module.exports = {
 
             // Retornando...
             customer = await Customer.findByPk(id, {
-                attributes: ['id', 'company_name', 'cnpj', 'fancy_name', 'nick_name', 'phone', 'in_update'],
+                attributes: attributes_Customer,
                 include: {
                     model: Address,
-                    attributes: ['address', 'number', 'zip_code'],
+                    attributes: attributes_Address,
                     through: {
                         attributes: []
                     },
                     include: {
                         model: City,
-                        attributes: ['name', 'state', 'ibge_code']
+                        attributes: attributes_City
                     }
                 }
             });
