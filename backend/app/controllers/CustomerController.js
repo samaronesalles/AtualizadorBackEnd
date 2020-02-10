@@ -93,8 +93,9 @@ module.exports = {
             if (!req_customer.cnpj)
                 throw new Error("field 'cnpj' is required.");
 
-            if (!req_customer.in_update)
-                throw new Error("field 'in_update' is required.");
+            // Vai assumir "false" quando não existir...
+            // if (!req_customer.in_update)
+            //     throw new Error("field 'in_update' is required.");
 
             if (!req_customer.address)
                 throw new Error("field 'address' is required.")
@@ -104,7 +105,7 @@ module.exports = {
                     throw new Error("field 'address.address' is required.");
 
                 if (!req_customer.address.number)
-                    throw new Error("field 'address.address' is required.");
+                    throw new Error("field 'address.number' is required.");
 
                 if (!req_customer.address.zip_code)
                     throw new Error("field 'address.zip_code' is required.");
@@ -150,31 +151,52 @@ module.exports = {
             }
             /* #endregion */
 
-            /* #region  "Resolvendo o cadastro do cliente" */
-            delete req_customer.address;
-            let [customer] = await Customer.findOrCreate({
-                where: req_customer,
-            });
+            /* #region  "Resolvendo o cadastro do tipo de atualizacao" */
+            const { type_update } = req.body;
+
+            if (type_update) {
+                const [type] = await TypesUpdate.findOrCreate({
+                    where: {
+                        description: type_update,
+                    }
+                })
+
+                if (type.dataValues.id > 0) {
+                    req_customer['type_update_id'] = type.dataValues.id;
+                }
+            }
+
+            /* #endregion */
+
+            /* #region  "Finalmente cadastrando o cliente" */
+            let customer = await Customer.create(req_customer);
             /* #endregion */
 
             const id = customer.id;
             await address.addCustomer(customer);
 
-            // Retornando...
+            /* #region  "Montando retorno dos dados" */
             customer = await Customer.findByPk(id, {
                 attributes: attributes_Customer,
-                include: {
-                    model: Address,
-                    attributes: attributes_Address,
-                    through: {
-                        attributes: []
+                include: [
+                    {
+                        model: TypesUpdate,
+                        attributes: ['id', 'description']
                     },
-                    include: {
-                        model: City,
-                        attributes: attributes_City
-                    }
-                }
+                    {
+                        model: Address,
+                        attributes: attributes_Address,
+                        through: {
+                            attributes: []
+                        },
+                        include: {
+                            model: City,
+                            attributes: attributes_City
+                        },
+                    },
+                ]
             });
+            /* #endregion */
 
             return res.json(customer);
 

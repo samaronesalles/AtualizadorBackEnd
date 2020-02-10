@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fb898a37-a8a9-4430-be61-99111ab772be",
+		"_postman_id": "c3394fa9-93a8-496f-aef8-9fb72633441a",
 		"name": "AtualizadorLBC",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -66,7 +66,7 @@
 					"response": []
 				},
 				{
-					"name": "/get byID",
+					"name": "/get byId",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -282,7 +282,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Suporte\"\n}",
+							"raw": "{\n\t\"name\": \"Desenvolvimento\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -290,7 +290,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/api/departments/1",
+							"raw": "localhost:3000/api/departments/2",
 							"host": [
 								"localhost"
 							],
@@ -298,7 +298,7 @@
 							"path": [
 								"api",
 								"departments",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -335,7 +335,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/customers/93451119000161",
+							"raw": "localhost:3000/api/customers/83141717000180",
 							"host": [
 								"localhost"
 							],
@@ -343,19 +343,19 @@
 							"path": [
 								"api",
 								"customers",
-								"93451119000161"
+								"83141717000180"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/get modules byCNPJ",
+					"name": "/get byCNPJ modules",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/customers/831417170/modules",
+							"raw": "localhost:3000/api/customers/83141717000180/modules",
 							"host": [
 								"localhost"
 							],
@@ -363,7 +363,7 @@
 							"path": [
 								"api",
 								"customers",
-								"831417170",
+								"83141717000180",
 								"modules"
 							]
 						}
@@ -384,7 +384,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"company_name\" : \"Postos Rede Setee LTDA\",\n\t\"cnpj\" : \"94.910.498/0001-73\",\n\t\"fancy_name\" : \"Rede Setee\",\n\t\"nick_name\" : \"Setee\",\n\t\"phone\" : \"(11) 9999-1111\",\n\t\"in_update\" : \"false\",\n\t\"address\" : {\n\t\t\"address\" : \"Rua Sete de Setembro\",\n\t\t\"number\" : \"38\",\n\t\t\"zip_code\" : \"25068-448\",\n\t\t\"city\" : \"São Paulo\",\n\t\t\"state\" : \"SP\"\n\t}\n}",
+							"raw": "{\n\t\"company_name\" : \"Postos Setee LTDA\",\n\t\"fancy_name\" : \"Rede Setee\",\n\t\"nick_name\" : \"Setee\",\n\t\"phone\" : \"(11) 8885-1244\",\n\t\"cnpj\" : \"64375351000160\",\n\t\"in_update\" : true,\n\t\"type_update\" : \"Moderado\",\n\t\"address\" : {\n\t\t\"address\" : \"Rua dos carajás\",\n\t\t\"number\" : 41,\n\t\t\"zip_code\" : \"30015-455\",\n\t\t\"city\" : \"São Paulo\",\n\t\t\"state\" : \"SP\"\n\t}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -400,142 +400,6 @@
 							"path": [
 								"api",
 								"customers"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "TypesUpdate",
-			"item": [
-				{
-					"name": "/get",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/typesupdate",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"typesupdate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/get byID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/typesupdate/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"typesupdate",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/post",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"description\" : \"muitooo cuidado\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/api/typesupdate",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"typesupdate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/delete byID",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/typesupdate/4",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"typesupdate",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/put byID",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"description\" : \"Crítico\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/api/typesupdate/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"typesupdate",
-								"1"
 							]
 						}
 					},
