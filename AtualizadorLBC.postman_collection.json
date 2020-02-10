@@ -335,7 +335,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/customers/83141717000180",
+							"raw": "localhost:3000/api/customers/64375351000160",
 							"host": [
 								"localhost"
 							],
@@ -343,7 +343,7 @@
 							"path": [
 								"api",
 								"customers",
-								"83141717000180"
+								"64375351000160"
 							]
 						}
 					},
@@ -355,7 +355,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/customers/83141717000180/modules",
+							"raw": "localhost:3000/api/customers/64375351000160/modules",
 							"host": [
 								"localhost"
 							],
@@ -363,7 +363,7 @@
 							"path": [
 								"api",
 								"customers",
-								"83141717000180",
+								"64375351000160",
 								"modules"
 							]
 						}
@@ -400,6 +400,26 @@
 							"path": [
 								"api",
 								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/delete byCNPJ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/customers/64375351000160",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customers",
+								"64375351000160"
 							]
 						}
 					},
