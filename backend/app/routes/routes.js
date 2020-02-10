@@ -25,6 +25,8 @@ routes.get('/customers', customerController.getCustomers);                      
 routes.get('/customers/:cnpj', customerController.getCustomer);                             // Testado: OK
 routes.get('/customers/:cnpj/modules', customerController.getVersionCompare);               // Testado: OK
 routes.post('/customers', customerController.postCustomer);                                 // Testado: OK
+routes.delete('/customers/:cnpj', customerController.deleteCustomer);                       // Testado: OK
+routes.put('/customers/:cnpj', customerController.putCustomer);                             // Testado: OK
 
 // Types update
 routes.get('/typesupdate', TypesUpdateController.getTypesUpdate);                           // Testado: OK

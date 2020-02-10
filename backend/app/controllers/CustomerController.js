@@ -129,7 +129,6 @@ module.exports = {
 
                 if (!city)
                     throw new Error("The city isn't registered on the server. Please contact the adm.");
-
             }
             /* #endregion */
 
@@ -206,7 +205,7 @@ module.exports = {
 
     },
 
-    async getVersionCompare(req, res) {
+    async getVersionCompare(req, res) {          // Testado:
         console.log('chegou em "controller>CustomerController.getVersionCompare"');
 
         const { cnpj } = req.params
@@ -228,4 +227,57 @@ module.exports = {
         });
     },
 
+    async deleteCustomer(req, res) {             // Testado: OK
+        console.log('chegou em "controller>CustomerController.deleteCustomer"');
+
+        try {
+            const { cnpj } = req.params;
+            const customer = await Customer.findOne({
+                where: {
+                    cnpj: cnpj,
+                }
+            });
+
+            if (!customer)
+                throw new Error("Customer not found TO DELETE");
+
+            await customer.destroy({
+                where: {
+                    cnpj: cnpj,
+                }
+            });
+
+
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+
+        return res.json({});
+    },
+
+    async putCustomer(req, res) {                // Testado:
+        console.log('chegou em "controller>UsersController.putUser"');
+
+        try {
+
+            const { cnpj } = req.params;
+            let customer = await User.findOne({
+                where: {
+                    cnpj: cnpj
+                }
+            });
+
+            if (!customer)
+                throw new Error("Customer not found TO UPDATE");
+
+            /* #region  "Validações..." */
+
+            /* #endregion */
+
+            return res.json(customer);
+
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        };
+    }
 };

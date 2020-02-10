@@ -79,7 +79,7 @@ module.exports = {
             return res.status(400).json({ error: error.message });
         }
 
-        return res.json();
+        return res.json({});
     },
 
     async putTypesUpdate(req, res) {      // Testado: OK

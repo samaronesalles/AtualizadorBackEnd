@@ -48,7 +48,7 @@ module.exports = {
             }
         });
 
-        return res.json();
+        return res.json({});
     },
 
     async putDepartment(req, res) {       // Testado: OK
