@@ -164,7 +164,6 @@ module.exports = {
                     req_customer['type_update_id'] = type.dataValues.id;
                 }
             }
-
             /* #endregion */
 
             /* #region  "Finalmente cadastrando o cliente" */
@@ -261,7 +260,7 @@ module.exports = {
         try {
 
             const { cnpj } = req.params;
-            let customer = await User.findOne({
+            let customer = await Customer.findOne({
                 where: {
                     cnpj: cnpj
                 }
@@ -270,9 +269,112 @@ module.exports = {
             if (!customer)
                 throw new Error("Customer not found TO UPDATE");
 
-            /* #region  "Validações..." */
+            const custumer_id = customer.id;
 
+            /* #region  "Validações..." */
+            if (!req.body.company_name)
+                throw new Error("field 'company_name' is required.");
+
+            if (!req.body.cnpj)
+                throw new Error("field 'cnpj' is required.");
+
+            if (!req.body.address)
+                throw new Error("field 'address' is required.")
+            else {
+
+                if (!req.body.address.address)
+                    throw new Error("field 'address.address' is required.");
+
+                if (!req.body.address.number)
+                    throw new Error("field 'address.number' is required.");
+
+                if (!req.body.address.zip_code)
+                    throw new Error("field 'address.zip_code' is required.");
+
+                if (req.body.address.ibge_code) {
+                    city = await City.findOne({ where: { ibge_code: req.body.address.ibge_code } })
+                } else {
+                    if (!req.body.address.city)
+                        throw new Error("field 'address.city' is required.");
+
+                    if (!req.body.address.state)
+                        throw new Error("field 'address.state' is required.");
+
+                    city = await City.findOne({
+                        where: {
+                            name: req.body.address.city,
+                            state: req.body.address.state
+                        }
+                    });
+                }
+
+                if (!city)
+                    throw new Error("The city isn't registered on the server. Please contact the adm.");
+            }
             /* #endregion */
+
+            /* #region  "Resolvendo endereço do cliente" */
+            let address = await Address.findOne({
+                where: {
+                    address: req.body.address.address,
+                    number: req.body.address.number,
+                    zip_code: req.body.address.zip_code,
+                    city_id: city.id,
+                }
+            });
+
+            if (!address) {
+                address = req.body.address;
+                address['city_id'] = city.id;
+
+                address = await Address.create(address);
+            }
+            /* #endregion */
+
+            /* #region  "Resolvendo o cadastro do tipo de atualizacao" */
+            const { type_update } = req.body;
+
+            if (type_update) {
+                const [type] = await TypesUpdate.findOrCreate({
+                    where: {
+                        description: type_update,
+                    }
+                })
+
+                if (type.dataValues.id > 0) {
+                    req.body['type_update_id'] = type.dataValues.id;
+                }
+            }
+            /* #endregion */
+
+            await customer.update(req.body, {
+                where: {
+                    id: custumer_id
+                },
+                returning: true,
+                plain: true
+            });
+
+            customer = await Customer.findByPk(custumer_id, {
+                attributes: attributes_Customer,
+                include: [
+                    {
+                        model: TypesUpdate,
+                        attributes: ['id', 'description']
+                    },
+                    {
+                        model: Address,
+                        attributes: attributes_Address,
+                        through: {
+                            attributes: []
+                        },
+                        include: {
+                            model: City,
+                            attributes: attributes_City
+                        },
+                    },
+                ]
+            });
 
             return res.json(customer);
 
