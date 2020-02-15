@@ -9,44 +9,6 @@
 			"name": "Users",
 			"item": [
 				{
-					"name": "/post",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Flaubert\",\n\t\"email\": \"flauflau@gmail.com\",\n\t\"password\": \"t123a\",\n\t\"department\": {\"name\": \"Suporte\"}\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/api/users",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "/get",
 					"request": {
 						"method": "GET",
@@ -80,6 +42,44 @@
 								"api",
 								"users",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/post",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Flaubert\",\n\t\"email\": \"flauflau@gmail.com\",\n\t\"password\": \"t123a\",\n\t\"department\": {\"name\": \"Suporte\"}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
 							]
 						}
 					},
@@ -179,6 +179,26 @@
 					"response": []
 				},
 				{
+					"name": "/get byName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/departments/suporte",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departments",
+								"suporte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/post",
 					"request": {
 						"auth": {
@@ -211,55 +231,6 @@
 							"path": [
 								"api",
 								"departments"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/get byName",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/departments/suporte",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"departments",
-								"suporte"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/delete byID",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/api/departments/1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"departments",
-								"1"
 							]
 						}
 					},
@@ -299,6 +270,35 @@
 								"api",
 								"departments",
 								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/delete byID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/departments/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departments",
+								"1"
 							]
 						}
 					},
@@ -406,26 +406,6 @@
 					"response": []
 				},
 				{
-					"name": "/delete byCNPJ",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/customers/64375351000160",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"customers",
-								"64375351000160"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "/put byCNPJ",
 					"request": {
 						"method": "PUT",
@@ -456,6 +436,162 @@
 								"api",
 								"customers",
 								"64375351000160"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/delete byCNPJ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/customers/64375351000160",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customers",
+								"64375351000160"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Modules",
+			"item": [
+				{
+					"name": "/get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/get byID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/modules/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"modules",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\" : \"LBC-Gás\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/delete byID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/modules/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"modules",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/put byID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\" : \"LBCGasSSS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/modules/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"modules",
+								"1"
 							]
 						}
 					},
