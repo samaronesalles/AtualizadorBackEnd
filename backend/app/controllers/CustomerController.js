@@ -237,7 +237,12 @@ module.exports = {
             let customer = await Customer.findOne({
                 where: {
                     cnpj: cnpj
-                }
+                },
+                include: [
+                    {
+                        model: Address,
+                    },
+                ]
             });
 
             if (!customer)
@@ -297,6 +302,9 @@ module.exports = {
                 }
             }
             /* #endregion */
+            const oldAdress = customer.Addresses;
+            if (oldAdress)
+                customer.removeAddress(oldAdress);
 
             await customer.update(req.body, {
                 where: {
@@ -305,6 +313,8 @@ module.exports = {
                 returning: true,
                 plain: true
             });
+
+            await address.addCustomer(customer);
 
             customer = await Customer.findByPk(custumer_id, {
                 attributes: attributes_Customer,

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c3394fa9-93a8-496f-aef8-9fb72633441a",
+		"_postman_id": "09ad9fc1-95f1-4aac-8f3d-cb6a874fe10b",
 		"name": "AtualizadorLBC",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -410,6 +410,42 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/customers/64375351000160",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"customers",
+								"64375351000160"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/put byCNPJ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company_name\" : \"Postos Setee LTDA\",\n\t\"fancy_name\" : \"Rede Setee\",\n\t\"nick_name\" : \"Setee\",\n\t\"phone\" : \"(11) 8885-1244\",\n\t\"cnpj\" : \"64375351000160\",\n\t\"in_update\" : true,\n\t\"type_update\" : \"Moderado\",\n\t\"address\" : {\n\t\t\"address\" : \"Rua dos carajás\",\n\t\t\"number\" : 41,\n\t\t\"zip_code\" : \"30015-455\",\n\t\t\"city\" : \"São Paulo\",\n\t\t\"state\" : \"SP\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:3000/api/customers/64375351000160",
 							"host": [
