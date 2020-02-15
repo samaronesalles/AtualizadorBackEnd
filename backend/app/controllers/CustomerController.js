@@ -1,3 +1,4 @@
+const CheckCustomer = require('./validations/Customers');
 const Customer = require('../models/Customer');
 const Address = require('../models/Address');
 const City = require('../models/City');
@@ -86,39 +87,13 @@ module.exports = {
             const req_customer = req.body;
             let city = {};
 
-            /* #region  "Resolvendo validações" */
-            if (!req_customer.company_name)
-                throw new Error("field 'company_name' is required.");
+            CheckCustomer(req, res);
 
-            if (!req_customer.cnpj)
-                throw new Error("field 'cnpj' is required.");
-
-            // Vai assumir "false" quando não existir...
-            // if (!req_customer.in_update)
-            //     throw new Error("field 'in_update' is required.");
-
-            if (!req_customer.address)
-                throw new Error("field 'address' is required.")
-            else {
-
-                if (!req_customer.address.address)
-                    throw new Error("field 'address.address' is required.");
-
-                if (!req_customer.address.number)
-                    throw new Error("field 'address.number' is required.");
-
-                if (!req_customer.address.zip_code)
-                    throw new Error("field 'address.zip_code' is required.");
+            if (req_customer.address) {
 
                 if (req_customer.address.ibge_code) {
                     city = await City.findOne({ where: { ibge_code: req_customer.address.ibge_code } })
                 } else {
-                    if (!req_customer.address.city)
-                        throw new Error("field 'address.city' is required.");
-
-                    if (!req_customer.address.state)
-                        throw new Error("field 'address.state' is required.");
-
                     city = await City.findOne({
                         where: {
                             name: req_customer.address.city,
@@ -130,7 +105,6 @@ module.exports = {
                 if (!city)
                     throw new Error("The city isn't registered on the server. Please contact the adm.");
             }
-            /* #endregion */
 
             /* #region  "Resolvendo endereço do cliente" */
             let address = await Address.findOne({
@@ -271,35 +245,13 @@ module.exports = {
 
             const custumer_id = customer.id;
 
-            /* #region  "Validações..." */
-            if (!req.body.company_name)
-                throw new Error("field 'company_name' is required.");
+            CheckCustomer(req, res);
 
-            if (!req.body.cnpj)
-                throw new Error("field 'cnpj' is required.");
-
-            if (!req.body.address)
-                throw new Error("field 'address' is required.")
-            else {
-
-                if (!req.body.address.address)
-                    throw new Error("field 'address.address' is required.");
-
-                if (!req.body.address.number)
-                    throw new Error("field 'address.number' is required.");
-
-                if (!req.body.address.zip_code)
-                    throw new Error("field 'address.zip_code' is required.");
+            if (req.body.address) {
 
                 if (req.body.address.ibge_code) {
                     city = await City.findOne({ where: { ibge_code: req.body.address.ibge_code } })
                 } else {
-                    if (!req.body.address.city)
-                        throw new Error("field 'address.city' is required.");
-
-                    if (!req.body.address.state)
-                        throw new Error("field 'address.state' is required.");
-
                     city = await City.findOne({
                         where: {
                             name: req.body.address.city,
@@ -311,7 +263,6 @@ module.exports = {
                 if (!city)
                     throw new Error("The city isn't registered on the server. Please contact the adm.");
             }
-            /* #endregion */
 
             /* #region  "Resolvendo endereço do cliente" */
             let address = await Address.findOne({

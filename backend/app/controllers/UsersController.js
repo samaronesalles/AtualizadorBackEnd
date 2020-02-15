@@ -1,3 +1,4 @@
+const CheckUser = require('./validations/Users');
 const User = require('../models/User');
 const Department = require('../models/Department');
 const Crypt = require('../Utils/encryption.js');
@@ -68,14 +69,7 @@ module.exports = {
 
             const { name, email, password, department } = req.body;
 
-            if (!name)
-                throw new Error("field 'name' is required.");
-
-            if (!email)
-                throw new Error("field 'email' is required.");
-
-            if (!password)
-                throw new Error("field 'password' is required.");
+            CheckUser(req, res);
 
             const user_temp = await User.findOne({ where: { email: email } });
 
@@ -156,14 +150,7 @@ module.exports = {
 
             const { name, email, password, department } = req.body;
 
-            if (!name)
-                throw new Error("field 'name' is required.");
-
-            if (!email)
-                throw new Error("field 'email' is required.");
-
-            if (!password)
-                throw new Error("field 'password' is required.");
+            CheckUser(req, res);
 
             if (department) {
                 if (department.name != '') {

@@ -1,3 +1,4 @@
+const CheckTypeUpdate = require('./validations/TypesUpdate');
 const TypesUpdate = require('../models/TypesUpdate');
 
 module.exports = {
@@ -22,9 +23,7 @@ module.exports = {
         const { type_id } = req.params;
 
         try {
-
-            if (!type_id)
-                throw new Error("Type of update index is required.");
+            CheckTypeUpdate.ValidParam(req, res);
 
             const type = await TypesUpdate.findByPk(type_id);
 
@@ -45,8 +44,7 @@ module.exports = {
 
             const { description } = req.body;
 
-            if (!description)
-                throw new Error("field 'description' is required.");
+            CheckTypeUpdate.ValidBody(req, res);
 
             let type = await TypesUpdate.create(req.body);
 
@@ -87,6 +85,8 @@ module.exports = {
 
         try {
 
+            CheckTypeUpdate.ValidParam(req, res);
+
             const { type_id } = req.params;
             const type = await TypesUpdate.findByPk(type_id);
 
@@ -95,8 +95,7 @@ module.exports = {
 
             const { description } = req.body;
 
-            if (!description)
-                throw new Error("field 'description' is required.");
+            CheckTypeUpdate.ValidBody(req, res);
 
             await type.update(req.body, {
                 where: {
