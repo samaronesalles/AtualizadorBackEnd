@@ -72,12 +72,12 @@ module.exports = {
                 }
             });
 
+            return res.json({});
 
         } catch (error) {
             return res.status(400).json({ error: error.message });
         }
 
-        return res.json({});
     },
 
     async putTypesUpdate(req, res) {      // Testado: OK

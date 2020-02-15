@@ -5,6 +5,7 @@ const userController = require('../controllers/UsersController');
 const departmentController = require('../controllers/DepartmentsController');
 const customerController = require('../controllers/CustomerController');
 const TypesUpdateController = require('../controllers/TypesUpdateController');
+const ModuleController = require('../controllers/ModuleController');
 
 // Users
 routes.get('/users', userController.getUsers);                                              // Testado: OK
@@ -34,5 +35,12 @@ routes.get('/typesupdate/:type_id', TypesUpdateController.getTypeUpdate);       
 routes.post('/typesupdate', TypesUpdateController.postTypesUpdate);                         // Testado: OK
 routes.delete('/typesupdate/:type_id', TypesUpdateController.deleteTypesUpdate);            // Testado: OK
 routes.put('/typesupdate/:type_id', TypesUpdateController.putTypesUpdate);                  // Testado: OK
+
+// Modules
+routes.get('/modules', ModuleController.getModules);                                        // Testado: OK
+routes.get('/modules/:module_id', ModuleController.getModule);                              // Testado: OK
+routes.post('/modules', ModuleController.postModule);                                       // Testado: OK
+routes.delete('/modules/:module_id', ModuleController.deleteModule);                        // Testado: OK
+routes.put('/modules/:module_id', ModuleController.putModule);                              // Testado: OK
 
 module.exports = routes;

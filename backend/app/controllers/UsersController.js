@@ -74,7 +74,7 @@ module.exports = {
             const user_temp = await User.findOne({ where: { email: email } });
 
             if (user_temp) {
-                return res.status(400).json({ error: 'user email already registered.' });
+                throw new Error("user email already registered.");
             }
 
             if (department) {
