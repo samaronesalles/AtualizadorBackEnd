@@ -8,6 +8,7 @@ const Address = require('../app/models/Address');
 const City = require('../app/models/City');
 const TypesUpdate = require('../app/models/TypesUpdate');
 const Modules = require('../app/models/Module');
+const Version = require('../app/models/Version');
 
 const connection = new Sequelize(dbConfig);
 
@@ -18,10 +19,12 @@ Address.init(connection);
 City.init(connection);
 TypesUpdate.init(connection);
 Modules.init(connection);
+Version.init(connection);
 
 User.associate(connection.models);
 Address.associate(connection.models);
 Customer.associate(connection.models);
+Version.associate(connection.models);
 
 module.exports = connection;
 

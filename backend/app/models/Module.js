@@ -10,6 +10,9 @@ class Modules extends Model {
         });
     };
 
+    static associate(models) {
+        this.hasMany(models.Version);
+    }
 }
 
 module.exports = Modules;
