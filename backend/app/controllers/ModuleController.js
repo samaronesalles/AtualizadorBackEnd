@@ -48,7 +48,9 @@ module.exports = {
             if (!description)
                 throw new Error("field 'description' is required.");
 
-            let mod = await Modules.create(req.body);
+            const [mod] = await Modules.findOrCreate({
+                where: { description: description },
+            });
 
             return res.json(mod);
 

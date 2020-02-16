@@ -101,11 +101,18 @@ module.exports = {
 
         try {
 
-            const req_customer = req.body;
-            let city = {};
-
             CheckCustomer(req, res);
 
+            const req_customer = req.body;
+            let city = {};
+            const req_modules = req_customer.modules;
+
+            let customer = await Customer.findOne({ where: { cnpj: req_customer.cnpj } })
+
+            if (customer)
+                throw new Error("The client is already exists on the server");
+
+            /* #region  "Resolvendo Cidade do endereço" */
             if (req_customer.address) {
 
                 if (req_customer.address.ibge_code) {
@@ -122,6 +129,7 @@ module.exports = {
                 if (!city)
                     throw new Error("The city isn't registered on the server. Please contact the adm.");
             }
+            /* #endregion */
 
             /* #region  "Resolvendo endereço do cliente" */
             let address = await Address.findOne({
@@ -142,7 +150,7 @@ module.exports = {
             /* #endregion */
 
             /* #region  "Resolvendo o cadastro do tipo de atualizacao" */
-            const { type_update } = req.body;
+            const { type_update } = req_customer;
 
             if (type_update) {
                 const [type] = await TypesUpdate.findOrCreate({
@@ -157,14 +165,28 @@ module.exports = {
             }
             /* #endregion */
 
-            /* #region  "Finalmente cadastrando o cliente" */
-            let customer = await Customer.create(req_customer);
-            /* #endregion */
+            if (req_modules)
+                delete req_customer.modules;
 
-            const id = customer.id;
+            customer = await Customer.create(req_customer);
+
+            /* #region  "Vinculando Endereço e Modulos do cliente" */
             await address.addCustomer(customer);
 
+            if (req_modules) {
+                for (let mod of req_modules) {
+                    let [newmod] = await Module.findOrCreate({ where: { description: mod } });
+
+                    if (newmod.dataValues.id > 0) {
+                        await newmod.addCustomer(customer);
+                    }
+                }
+            }
+            /* #endregion */
+
             /* #region  "Montando retorno dos dados" */
+            const id = customer.id;
+
             customer = await Customer.findByPk(id, {
                 attributes: attributes_Customer,
                 include: [
@@ -256,15 +278,21 @@ module.exports = {
         console.log('chegou em "controller>UsersController.putUser"');
 
         try {
+            CheckCustomer(req, res);
 
             const { cnpj } = req.params;
+
             let customer = await Customer.findOne({
                 where: {
                     cnpj: cnpj
                 },
                 include: [
+                    { model: Address },
                     {
-                        model: Address,
+                        model: Module,
+                        through: {
+                            attributes: []
+                        },
                     },
                 ]
             });
@@ -273,9 +301,9 @@ module.exports = {
                 throw new Error("Customer not found TO UPDATE");
 
             const custumer_id = customer.id;
+            const newModules = req.body.modules;
 
-            CheckCustomer(req, res);
-
+            /* #region  "Resolvendo cidade do endereço" */
             if (req.body.address) {
 
                 if (req.body.address.ibge_code) {
@@ -292,6 +320,8 @@ module.exports = {
                 if (!city)
                     throw new Error("The city isn't registered on the server. Please contact the adm.");
             }
+
+            /* #endregion */
 
             /* #region  "Resolvendo endereço do cliente" */
             let address = await Address.findOne({
@@ -326,9 +356,27 @@ module.exports = {
                 }
             }
             /* #endregion */
+
+            /* #region  "Vicnulando endereços e módulos" */
             const oldAdress = customer.Addresses;
             if (oldAdress)
                 customer.removeAddress(oldAdress);
+
+            const oldModels = customer.Modules;
+            if (oldModels)
+                for (let mod of oldModels) {
+                    mod.removeCustomer(customer);
+                }
+
+            if (newModules)
+                for (let mod of newModules) {
+                    let [newmod] = await Module.findOrCreate({ where: { description: mod } });
+
+                    if (newmod.dataValues.id > 0) {
+                        await newmod.addCustomer(customer);
+                    }
+                }
+            /* #endregion */
 
             await customer.update(req.body, {
                 where: {
@@ -340,6 +388,7 @@ module.exports = {
 
             await address.addCustomer(customer);
 
+            /* #region  "Montando retorno" */
             customer = await Customer.findByPk(custumer_id, {
                 attributes: attributes_Customer,
                 include: [
@@ -367,6 +416,7 @@ module.exports = {
                     },
                 ]
             });
+            /* #endregion */
 
             return res.json(customer);
 

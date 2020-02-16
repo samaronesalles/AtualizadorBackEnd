@@ -70,10 +70,24 @@ module.exports = {
                     }
                 })
 
-                if (new_module.dataValues.id > 0) {
-                    req.body['module_id'] = new_module.dataValues.id;
-                }
+                if (new_module.dataValues.id > 0)
+                    req.body['module_id'] = new_module.dataValues.id
+                else
+                    throw new Error("Error when register the module. Contact the administrator");
             }
+
+            const ver = await Versions.findOne(
+                {
+                    where: {
+                        number: req.body.number,
+                        letter: req.body.letter,
+                        module_id: new_module.dataValues.id,
+                    }
+                }
+            )
+
+            if (ver)
+                throw new Error("This version is already exists on the server");
 
             // carregar aqui o arquivo e salvar no disco, atualizando o <caminho className=""></caminho>
             req.body['file_path'] = 'C:/Versions';

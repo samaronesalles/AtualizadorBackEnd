@@ -426,7 +426,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"company_name\" : \"Postos Setee LTDA\",\n\t\"fancy_name\" : \"Rede Setee\",\n\t\"nick_name\" : \"Setee\",\n\t\"phone\" : \"(11) 8885-1244\",\n\t\"cnpj\" : \"64375351000160\",\n\t\"in_update\" : true,\n\t\"type_update\" : \"Moderado\",\n\t\"address\" : {\n\t\t\"address\" : \"Rua dos carajás\",\n\t\t\"number\" : 41,\n\t\t\"zip_code\" : \"30015-455\",\n\t\t\"city\" : \"São Paulo\",\n\t\t\"state\" : \"SP\"\n\t}\n}",
+							"raw": "{\n\t\"company_name\" : \"Postos Setee LTDA\",\n\t\"fancy_name\" : \"Rede Setee\",\n\t\"nick_name\" : \"Setee\",\n\t\"phone\" : \"(11) 8885-1244\",\n\t\"cnpj\" : \"00101228522387\",\n\t\"in_update\" : true,\n\t\"type_update\" : \"Moderado\",\n\t\"address\" : {\n\t\t\"address\" : \"Rua dos carajás\",\n\t\t\"number\" : 41,\n\t\t\"zip_code\" : \"30015-455\",\n\t\t\"city\" : \"São Paulo\",\n\t\t\"state\" : \"SP\"\n\t},\n\t\"modules\" : [\"LBC GAS\", \"LBC PDV\"]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -461,7 +461,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"company_name\" : \"Postos Setee LTDA\",\n\t\"fancy_name\" : \"Rede Setee\",\n\t\"nick_name\" : \"Setee\",\n\t\"phone\" : \"(11) 8885-1244\",\n\t\"cnpj\" : \"64375351000160\",\n\t\"in_update\" : true,\n\t\"type_update\" : \"Moderado\",\n\t\"address\" : {\n\t\t\"address\" : \"Rua dos carajás\",\n\t\t\"number\" : 41,\n\t\t\"zip_code\" : \"30015-455\",\n\t\t\"city\" : \"São Paulo\",\n\t\t\"state\" : \"SP\"\n\t}\n}",
+							"raw": "{\n\t\"company_name\" : \"Postos Setee LTDAA\",\n\t\"fancy_name\" : \"Rede Setee\",\n\t\"nick_name\" : \"Setee\",\n\t\"phone\" : \"(11) 8885-1244\",\n\t\"cnpj\" : \"00101228522387\",\n\t\"in_update\" : true,\n\t\"type_update\" : \"Moderado\",\n\t\"address\" : {\n\t\t\"address\" : \"Rua dos carajás\",\n\t\t\"number\" : 41,\n\t\t\"zip_code\" : \"30015-455\",\n\t\t\"city\" : \"São Paulo\",\n\t\t\"state\" : \"SP\"\n\t},\n\t\"modules\" : [\"LBC GAS\", \"LBC PDV\"]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -469,7 +469,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/api/customers/64375351000160",
+							"raw": "localhost:3000/api/customers/00101228522387",
 							"host": [
 								"localhost"
 							],
@@ -477,7 +477,7 @@
 							"path": [
 								"api",
 								"customers",
-								"64375351000160"
+								"00101228522387"
 							]
 						}
 					},

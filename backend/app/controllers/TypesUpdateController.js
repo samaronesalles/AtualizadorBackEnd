@@ -46,7 +46,9 @@ module.exports = {
 
             CheckTypeUpdate.ValidBody(req, res);
 
-            let type = await TypesUpdate.create(req.body);
+            const [type] = await TypesUpdate.findOrCreate({
+                where: { description: description },
+            });
 
             return res.json(type);
 
