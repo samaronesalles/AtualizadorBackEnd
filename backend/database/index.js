@@ -25,6 +25,7 @@ User.associate(connection.models);
 Address.associate(connection.models);
 Customer.associate(connection.models);
 Version.associate(connection.models);
+Modules.associate(connection.models);
 
 module.exports = connection;
 

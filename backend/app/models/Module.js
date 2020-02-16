@@ -11,6 +11,7 @@ class Modules extends Model {
     };
 
     static associate(models) {
+        this.belongsToMany(models.Customer, { foreignKey: 'module_id', through: 'purchased_modules' });
         this.hasMany(models.Version);
     }
 }

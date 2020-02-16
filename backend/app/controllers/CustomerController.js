@@ -2,10 +2,13 @@ const CheckCustomer = require('./validations/Customers');
 const Customer = require('../models/Customer');
 const Address = require('../models/Address');
 const City = require('../models/City');
+const Module = require('../models/Module');
 const TypesUpdate = require('../models/TypesUpdate');
+
 const attributes_Customer = ['id', 'company_name', 'cnpj', 'fancy_name', 'nick_name', 'phone', 'in_update'];
 const attributes_Address = ['address', 'number', 'zip_code'];
 const attributes_City = ['name', 'state', 'ibge_code'];
+const attributes_Module = ['id', 'description'];
 
 module.exports = {
 
@@ -18,6 +21,13 @@ module.exports = {
                 {
                     model: TypesUpdate,
                     attributes: ['id', 'description']
+                },
+                {
+                    model: Module,
+                    attributes: attributes_Module,
+                    through: {
+                        attributes: []
+                    },
                 },
                 {
                     model: Address,
@@ -55,6 +65,13 @@ module.exports = {
                         {
                             model: TypesUpdate,
                             attributes: ['id', 'description']
+                        },
+                        {
+                            model: Module,
+                            attributes: attributes_Module,
+                            through: {
+                                attributes: []
+                            },
                         },
                         {
                             model: Address,
@@ -156,6 +173,13 @@ module.exports = {
                         attributes: ['id', 'description']
                     },
                     {
+                        model: Module,
+                        attributes: attributes_Module,
+                        through: {
+                            attributes: []
+                        },
+                    },
+                    {
                         model: Address,
                         attributes: attributes_Address,
                         through: {
@@ -178,7 +202,7 @@ module.exports = {
 
     },
 
-    async getVersionCompare(req, res) {          // Testado:
+    async getVersionCompare(req, res) {          // Testado: OK
         console.log('chegou em "controller>CustomerController.getVersionCompare"');
 
         const { cnpj } = req.params
@@ -228,7 +252,7 @@ module.exports = {
         return res.json({});
     },
 
-    async putCustomer(req, res) {                // Testado:
+    async putCustomer(req, res) {                // Testado: OK
         console.log('chegou em "controller>UsersController.putUser"');
 
         try {
@@ -322,6 +346,13 @@ module.exports = {
                     {
                         model: TypesUpdate,
                         attributes: ['id', 'description']
+                    },
+                    {
+                        model: Module,
+                        attributes: attributes_Module,
+                        through: {
+                            attributes: []
+                        },
                     },
                     {
                         model: Address,
