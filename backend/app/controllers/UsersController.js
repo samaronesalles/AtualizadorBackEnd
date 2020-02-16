@@ -62,6 +62,48 @@ module.exports = {
 
     },
 
+    async getAuthenticateLogin(req, res) {       // Testado: 
+        console.log('chegou em "controller>UsersController.getAuthenticateLogin"');
+
+        let { email, password } = req.body;
+
+        try {
+
+            if (!email)
+                throw new Error("user email is required.");
+
+            if (!password)
+                throw new Error("user password is required.");
+
+            const user = await User.findOne({
+                where: {
+                    email: email,
+                },
+                attributes: attributes_Users,
+                include: {
+                    model: Department,
+                    attributes: attributes_Departments
+                }
+            });
+
+            if (!user)
+                throw new Error("email or password are wrong or user doesn't exist.");
+
+            let pass = user.password;
+            pass = Crypt.decrypt(pass);
+
+            if (pass === password)
+                return res.json(user);
+            else
+                throw new Error("email or password are wrong or user doesn't exist.");
+
+
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+
+    },
+
     async postUser(req, res) {      // Testado: OK
         console.log('chegou em "controller>UsersController.postUser"');
 

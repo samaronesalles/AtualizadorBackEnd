@@ -48,6 +48,48 @@
 					"response": []
 				},
 				{
+					"name": "/get authenticateLogin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"flauflau@gmail.com\",\n\t\"password\": \"t123a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/user_login/authenticate",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user_login",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/post",
 					"request": {
 						"auth": {
