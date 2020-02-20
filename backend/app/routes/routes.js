@@ -11,7 +11,7 @@ const VersionController = require('../controllers/VersionController');
 // Users
 routes.get('/users', userController.getUsers);                                              // Testado: OK
 routes.get('/users/:user_id', userController.getUser);                                      // Testado: OK
-routes.get('/user_login/authenticate/', userController.getAuthenticateLogin);               // Testado: 
+routes.post('/user_login/authenticate/', userController.postAuthenticateLogin);             // Testado: 
 routes.post('/users', userController.postUser);                                             // Testado: OK
 routes.delete('/users/:user_id', userController.deleteUser);                                // Testado: OK
 routes.put('/users/:user_id', userController.putUser);                                      // Testado: OK

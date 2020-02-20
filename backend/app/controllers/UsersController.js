@@ -62,8 +62,8 @@ module.exports = {
 
     },
 
-    async getAuthenticateLogin(req, res) {       // Testado: 
-        console.log('chegou em "controller>UsersController.getAuthenticateLogin"');
+    async postAuthenticateLogin(req, res) {       // Testado: 
+        console.log('chegou em "controller>UsersController.postAuthenticateLogin"');
 
         let { email, password } = req.body;
 

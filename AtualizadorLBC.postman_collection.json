@@ -392,9 +392,9 @@
 					"response": []
 				},
 				{
-					"name": "/get byCNPJ modules",
+					"name": "/post byCNPJ modules",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"url": {
 							"raw": "localhost:3000/api/customers/64375351000160/modules",
