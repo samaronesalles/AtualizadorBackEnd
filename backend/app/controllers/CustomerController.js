@@ -236,7 +236,7 @@ module.exports = {
         // 3- passando formato de retorno fixo para teste
         return res.json({
             lbcpdv: {
-                version: '35.74',
+                version: '35.88',
                 path: 'http://192.168.2.150:8088/lastversion.zip'
             },
             lbcaut: { version: '', path: '' },

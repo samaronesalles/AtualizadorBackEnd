@@ -7,10 +7,11 @@ require('../database');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use("/api", require("./routes/routes"));
-app.use(cors());
+app.use("/api", require("./routes/  routes"));
+
 
 app.listen(PORTA, () => {
     console.log('Servidor iniciado na porta ' + PORTA);

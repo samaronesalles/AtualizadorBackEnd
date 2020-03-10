@@ -1,8 +1,8 @@
 module.exports = {
-  username: 'root',
-  password: '',
+  username: 'SYSDBA',
+  password: 'masterkey', // root ymPn*uz&a$2pO
   database: 'atualizadorlbc',
-  host: '127.0.0.1',
+  host: 'LOCALHOST', // sama 192.168.2.115
   dialect: 'mysql',
   loggin: false,
   seederStorage: "sequelize",
